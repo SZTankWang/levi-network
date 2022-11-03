@@ -1,6 +1,8 @@
 const express = require('express')
 const path = require('path');
+const bodyParser = require("body-parser");
 
+const router = express.Router();
 const app = express()
 const port = 3000
 
@@ -15,3 +17,15 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+router.post("/submit",(request,response) => {
+//code to perform particular action.
+//To access POST variable use req.body()methods.
+console.log(request.body);
+});
+
+// add router in the Express app.
+app.use("/", router);
